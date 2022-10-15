@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 
 export default function Home() {
   return (
@@ -17,3 +17,19 @@ export default function Home() {
     </div>
   )
 }
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context)
+  console.log(session)
+  if (session) {
+    return {
+      redirect: {
+        destination: '/account'
+      }
+    }
+  }
+  return {
+    props: { session },
+  }
+}
+
