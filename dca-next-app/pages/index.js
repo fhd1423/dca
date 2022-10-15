@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
         <div className='animate-bounce w-full font-bold text-gray-400'>
           without the <span className='text-white'> fees, </span> or the <span className='text-white'> hassle.🌟 </span>
         </div>
-        <button className='mt-20 h-18 w-36 p-4 border-white bg-white rounded-lg hover:text-black'>
+        <button onClick={() => signIn()} className='mt-20 h-18 w-36 p-4 border-white bg-white rounded-lg hover:text-black'>
           Login
         </button>
       </div>
