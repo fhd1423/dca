@@ -14,7 +14,7 @@ export default function Home() {
           Login
         </button>
         <div className='mt-40'>
-          Simply set how much you want to buy, how often you want to buy, we'll automate the rest away using your API keys.
+          Simply set how much you want to buy, how often you want to buy, we'll automate the rest away using your API keys.🪄
         </div>
       </div>
     </div>
