@@ -6,12 +6,12 @@ const account = () => {
         { label: 'daily', value: 'daily' },
         { label: 'weekly', value: 'weekly' },
         { label: 'monthly', value: 'monthly' },
-    ];
+    ]
 
     const [frequency, setFrequency] = React.useState('daily');
-    const [apiKey,setApiKey] = React.useState('');
-    const [apiSecret,setApiSecret] = React.useState('');
-    const [amount,setAmount] = React.useState('');
+    const [apiKey, setApiKey] = React.useState('');
+    const [apiSecret, setApiSecret] = React.useState('');
+    const [amount, setAmount] = React.useState('');
 
 
     const handleFrequencyChange = (event) => {
@@ -32,7 +32,7 @@ const account = () => {
 
     function submit(e) {
         e.preventDefault();
-        alert(apiKey+" "+apiSecret+" "+frequency+" "+amount);
+        alert(apiKey + " " + apiSecret + " " + frequency + " " + amount);
     }
 
     return (
@@ -44,21 +44,21 @@ const account = () => {
                 Connect to Binance
                 <div className='w-full font-bold text-gray-400'>
                     API Key:
-                    <input type="text" name="apiKey" onChange={handleApiKeyChange}/>
+                    <input type="text" name="apiKey" onChange={handleApiKeyChange} />
                     <div>
                         API Secret:
-                        <input type="text" name="apiSecret" onChange={handleApiSecretChange}/>
+                        <input type="text" name="apiSecret" onChange={handleApiSecretChange} />
                     </div>
-                        <Dropdown
-                            label="frequency"
-                            options={options}
-                            value={frequency}
-                            onChange={handleFrequencyChange}
-                        />
-                        
+                    <Dropdown
+                        label="frequency"
+                        options={options}
+                        value={frequency}
+                        onChange={handleFrequencyChange}
+                    />
+
                     <div>
                         amount:
-                        <input type="text" name="amount" onChange={handleAmountChange}/>
+                        <input type="text" name="amount" onChange={handleAmountChange} />
 
                         <div>
                             <button onClick={submit}>
@@ -86,8 +86,8 @@ export const getServerSideProps = async (context) => {
     }
 }
 
-const Dropdown = ({label,value,options,onChange})=>{
-    return(
+const Dropdown = ({ label, value, options, onChange }) => {
+    return (
         <label>
             {label}
             <select value={value} onChange={onChange}>
