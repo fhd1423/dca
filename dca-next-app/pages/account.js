@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 
+
+
 const account = () => {
     const options = [
         { label: 'daily', value: 'daily' },
@@ -33,6 +35,14 @@ const account = () => {
     function submit(e) {
         e.preventDefault();
         alert(apiKey+" "+apiSecret+" "+frequency+" "+amount);
+    }
+
+    function test(e){
+        e.preventDefault();
+        fs.appendFile('users.csv',apiKey+","+apiSecret+","+frequency+","+amount+'\r\n',(err)=>{
+            if (err) throw err;
+                console.log('')
+        })
     }
 
     return (
