@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase-admin": "^11.1.0",
     "body-parser": "^1.20.1",
     "browserify-fs": "^1.0.0",
     "firebase": "^9.12.1",

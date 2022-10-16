@@ -1,5 +1,7 @@
 import React from 'react'
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
+import db from './firebase_connect';
+import { collection, addDoc } from "firebase/firestore";
 
 
 
@@ -46,9 +48,17 @@ const account = () => {
         setCryptocurrency(event.target.value);
     };
 
-    function submit(e) {
+    async function submit(e) {
         e.preventDefault();
         alert(apiKey + " " + apiSecret + " " + frequency + " " + amount);
+        console.log(db)
+        const docRef = await addDoc(collection(db, "userData"), {
+            name: apiKey,
+            country: apiSecret,
+            frequency: frequency,
+            amount: amount
+        });
+        console.log("Document written with ID: ", docRef.id);
     }
 
 
@@ -123,7 +133,7 @@ const Dropdown = ({ label, value, options, onChange }) => {
             {label}
             <select value={value} onChange={onChange}>
                 {options.map((option) => (
-                    <option value={option.value}>{option.label}</option>
+                    <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
             </select>
         </label>
