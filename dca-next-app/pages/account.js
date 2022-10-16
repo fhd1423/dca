@@ -60,8 +60,8 @@ const account = () => {
 
     async function submit(e) {
         e.preventDefault();
-        r = trade(amount, apiKey, apiSecret, map[cryptocurrency])
-        alert(r)
+        //r = trade(amount, apiKey, apiSecret, map[cryptocurrency])
+        //alert(r)
         console.log(db)
         const docRef = await addDoc(collection(db, "userData"), {
             apiKey: apiKey,
