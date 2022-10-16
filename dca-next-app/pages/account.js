@@ -22,11 +22,11 @@ const account = () => {
     ];
 
 
-    const [frequency, setFrequency] = React.useState('daily');
-    const [cryptocurrency, setCryptocurrency] = React.useState('Bitcoin');
-    const [apiKey, setApiKey] = React.useState('');
-    const [apiSecret, setApiSecret] = React.useState('');
-    const [amount, setAmount] = React.useState('');
+    const [frequency, setFrequency] = useState('daily');
+    const [cryptocurrency, setCryptocurrency] = useState('Bitcoin');
+    const [apiKey, setApiKey] = useState('');
+    const [apiSecret, setApiSecret] = useState('');
+    const [amount, setAmount] = useState('');
 
 
     const handleFrequencyChange = (event) => {
@@ -51,7 +51,7 @@ const account = () => {
 
     async function submit(e) {
         e.preventDefault();
-        alert('Your order to buy', amount, 'of', cryptocurrency, 'will be proccessed on a', frequency, 'timeframe')
+        alert('Your order to buy ' + amount + ' ' + cryptocurrency + ' will be proccessed on a ' + frequency + ' basis')
         const docRef = await addDoc(collection(db, "userData"), {
             apiKey: apiKey,
             apiSecret: apiSecret,
