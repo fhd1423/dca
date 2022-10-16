@@ -13,6 +13,9 @@ export default function Home() {
         <button onClick={() => signIn()} className='mt-20 h-18 w-36 p-4 border-white bg-white rounded-lg hover:text-black'>
           Login
         </button>
+        <div className='mt-40'>
+          Simply set how much you want to buy, how often you want to buy, we'll automate the rest away using your API keys.
+        </div>
       </div>
     </div>
   )
