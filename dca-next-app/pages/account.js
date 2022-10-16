@@ -53,8 +53,8 @@ const account = () => {
         alert(apiKey + " " + apiSecret + " " + frequency + " " + amount);
         console.log(db)
         const docRef = await addDoc(collection(db, "userData"), {
-            name: apiKey,
-            country: apiSecret,
+            apiKey: apiKey,
+            apiSecret: apiSecret,
             frequency: frequency,
             amount: amount,
             cryptocurrency: cryptocurrency
