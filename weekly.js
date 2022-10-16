@@ -5,6 +5,14 @@ const { getFirestore } = require('firebase/firestore')
 const { collection, query, where, getDocs } = require("firebase/firestore")
 const { Spot } = require('@binance/connector')
 
+const map = {
+    'Bitcoin': 'BTCUSD',
+    'Ethereum': 'ETHUSD',
+    'BNB': 'BNBUSD',
+    'Cardano': 'ADAUSD',
+    'Solana': 'SOLUSD',
+    'Dogecoin': 'DOGEUSD'
+}
 
 async function main() {
     const firebaseConfig = {
@@ -20,7 +28,7 @@ async function main() {
     const firebaseapp = initializeApp(firebaseConfig)
     const db = getFirestore(firebaseapp)
 
-    const q = query(collection(db, "userData"), where("frequency", "==", "daily"));
+    const q = query(collection(db, "userData"), where("frequency", "==", "weekly"));
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -28,7 +36,7 @@ async function main() {
         let amount = doc.data().amount
         let apiKey = doc.data().apiKey
         let apiSecret = doc.data().apiSecret
-        let cryptocurrency = doc.data().cryptocurrency
+        let cryptocurrency = map[doc.data().cryptocurrency]
         trade(amount, apiKey, apiSecret, cryptocurrency)
         console.log(doc.id, " => ", doc.data());
     });
