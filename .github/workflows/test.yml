@@ -19,5 +19,5 @@ jobs:
         with:
           node-version: '16.x'
       - name: Run script
-        run: node dca-next-app/pages/api/test.js
+        run: node test.js
   
