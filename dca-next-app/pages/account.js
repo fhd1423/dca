@@ -2,7 +2,6 @@ import React from 'react'
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 import db from './firebase_connect';
 import { collection, addDoc } from "firebase/firestore";
-import { Spot } from '@binance/connector'
 
 
 
@@ -22,14 +21,6 @@ const account = () => {
         { label: 'Dogecoin', value: 'DOGEUSD' }
     ];
 
-    const map = {
-        'Bitcoin': 'BTCUSD',
-        'Ethereum': 'ETHUSD',
-        'BNB': 'BNBUSD',
-        'Cardano': 'ADAUSD',
-        'Solana': 'SOLUSD',
-        'Dogecoin': 'DOGEUSD'
-    }
 
     const [frequency, setFrequency] = React.useState('daily');
     const [cryptocurrency, setCryptocurrency] = React.useState('Bitcoin');
@@ -60,9 +51,7 @@ const account = () => {
 
     async function submit(e) {
         e.preventDefault();
-        r = trade(amount, apiKey, apiSecret, map[cryptocurrency])
-        alert(r)
-        console.log(db)
+        alert('Your order to buy', amount, 'of', cryptocurrency, 'will be proccessed on a', frequency, 'timeframe')
         const docRef = await addDoc(collection(db, "userData"), {
             apiKey: apiKey,
             apiSecret: apiSecret,
@@ -71,17 +60,6 @@ const account = () => {
             cryptocurrency: cryptocurrency
         });
         console.log("Document written with ID: ", docRef.id);
-    }
-    function trade(amount, apiKey, apiSecret, cryptocurrency) {
-        let r = ''
-        const client = new Spot(apiKey, apiSecret, { baseURL: 'https://api.binance.us' })
-
-        client.newOrder(cryptocurrency, 'BUY', 'MARKET', {
-            quantity: amount
-        }).then(response => r = response.data)
-            .catch(error => r = error)
-
-        return r
     }
 
 
