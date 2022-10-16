@@ -57,7 +57,7 @@ const account = () => {
             apiSecret: apiSecret,
             frequency: frequency,
             amount: amount,
-            cryptocurrency: cryptocurrency
+            cryptocurrency: cryptoOptions[cryptocurrency].value
         });
         console.log("Document written with ID: ", docRef.id);
     }
