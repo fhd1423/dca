@@ -3,6 +3,8 @@ const firestore = require('firebase/firestore')
 const { initializeApp } = require("firebase/app");
 const { getFirestore } = require('firebase/firestore')
 const { collection, query, where, getDocs } = require("firebase/firestore")
+const { Spot } = require('@binance/connector')
+
 
 async function main() {
     const firebaseConfig = {
@@ -27,9 +29,20 @@ async function main() {
         let apiKey = doc.data().apiKey
         let apiSecret = doc.data().apiSecret
         let cryptocurrency = doc.data().cryptocurrency
+        trade(amount, apiKey, apiSecret, cryptocurrency)
         console.log(doc.id, " => ", doc.data());
     });
 
 }
+function trade(amount, apiKey, apiSecret, cryptocurrency) {
+    const client = new Spot(apiKey, apiSecret, { baseURL: 'https://api.binance.us' })
+
+    client.newOrder(cryptocurrency, 'BUY', 'MARKET', {
+        quantity: amount
+    }).then(response => client.logger.log(response.data))
+        .catch(error => client.logger.error(error))
+
+}
+
 main()
 
