@@ -8,15 +8,31 @@ const account = () => {
         { label: 'monthly', value: 'monthly' },
     ];
 
-    const [value, setValue] = React.useState('daily');
+    const [frequency, setFrequency] = React.useState('daily');
+    const [apiKey,setApiKey] = React.useState('');
+    const [apiSecret,setApiSecret] = React.useState('');
+    const [amount,setAmount] = React.useState('');
 
-    const handleChange = (event) => {
-        setValue(event.target.value);
+
+    const handleFrequencyChange = (event) => {
+        setFrequency(event.target.value);
+    };
+
+    const handleApiKeyChange = (event) => {
+        setApiKey(event.target.value);
+    };
+
+    const handleApiSecretChange = (event) => {
+        setApiSecret(event.target.value);
+    };
+
+    const handleAmountChange = (event) => {
+        setAmount(event.target.value);
     };
 
     function submit(e) {
         e.preventDefault();
-        alert(value);
+        alert(apiKey+" "+apiSecret+" "+frequency+" "+amount);
     }
 
     return (
@@ -28,21 +44,21 @@ const account = () => {
                 Connect to Binance
                 <div className='w-full font-bold text-gray-400'>
                     API Key:
-                    <input type="text" name="apiKey" />
+                    <input type="text" name="apiKey" onChange={handleApiKeyChange}/>
                     <div>
-                        API Secreet:
-                        <input type="text" name="apiSecret" />
+                        API Secret:
+                        <input type="text" name="apiSecret" onChange={handleApiSecretChange}/>
                     </div>
                         <Dropdown
                             label="frequency"
                             options={options}
-                            value={value}
-                            onChange={handleChange}
+                            value={frequency}
+                            onChange={handleFrequencyChange}
                         />
                         
                     <div>
                         amount:
-                        <input type="text" name="amount" />
+                        <input type="text" name="amount" onChange={handleAmountChange}/>
 
                         <div>
                             <button onClick={submit}>
