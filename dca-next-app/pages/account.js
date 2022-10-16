@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 
+
+
 const account = () => {
     const options = [
         { label: 'daily', value: 'daily' },
@@ -8,7 +10,20 @@ const account = () => {
         { label: 'monthly', value: 'monthly' },
     ];
 
+    const cryptoOptions = [
+        { label: 'Bitcoin', value: 'Bitcoin' },
+        { label: 'Ethereum', value: 'Ethereum' },
+        { label: 'Tether', value: 'Tether' },
+        { label: 'USDCoin', value: 'USDCoin' },
+        { label: 'BNB', value: 'BNB' },
+        { label: 'BUSD', value: 'BUSD' },
+        { label: 'Cardano', value: 'Cardano' },
+        { label: 'Solana', value: 'Solana' },
+        { label: 'Dogecoin', value: 'Dogecoin' }
+    ];
+
     const [frequency, setFrequency] = React.useState('daily');
+    const [cryptocurrency, setCryptocurrency] = React.useState('Bitcoin');
     const [apiKey,setApiKey] = React.useState('');
     const [apiSecret,setApiSecret] = React.useState('');
     const [amount,setAmount] = React.useState('');
@@ -30,10 +45,15 @@ const account = () => {
         setAmount(event.target.value);
     };
 
+    const handleCryptocurrencyChange = (event) => {
+        setCryptocurrency(event.target.value);
+    };
+
     function submit(e) {
         e.preventDefault();
         alert(apiKey+" "+apiSecret+" "+frequency+" "+amount);
     }
+
 
     return (
         <div className=' relative bg-black h-screen w-screen'>
@@ -49,15 +69,22 @@ const account = () => {
                         API Secret:
                         <input type="text" name="apiSecret" onChange={handleApiSecretChange}/>
                     </div>
+                    <div>
                         <Dropdown
-                            label="frequency"
+                            label="cryptocurrency:"
+                            options={cryptoOptions}
+                            value={cryptocurrency}
+                            onChange={handleCryptocurrencyChange}
+                        />
+                    </div>
+                        <Dropdown
+                            label="frequency:"
                             options={options}
                             value={frequency}
                             onChange={handleFrequencyChange}
                         />
-                        
                     <div>
-                        amount:
+                        Dollar amount:
                         <input type="text" name="amount" onChange={handleAmountChange}/>
 
                         <div>
