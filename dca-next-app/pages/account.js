@@ -16,7 +16,7 @@ const account = () => {
 
     function submit(e) {
         e.preventDefault();
-        alert(apiKey);
+        alert(value);
     }
 
     return (
@@ -33,14 +33,13 @@ const account = () => {
                         API Secreet:
                         <input type="text" name="apiSecret" />
                     </div>
-                    <div>
-                        Frequency of purchase:
-                        <select value={value} onChange={handleChange}>
-                            {options.map((option) => (
-                                <option value={option.value}>{option.label}</option>
-                            ))}
-                        </select>
-                    </div>
+                        <Dropdown
+                            label="frequency"
+                            options={options}
+                            value={value}
+                            onChange={handleChange}
+                        />
+                        
                     <div>
                         amount:
                         <input type="text" name="amount" />
@@ -71,5 +70,17 @@ export const getServerSideProps = async (context) => {
     }
 }
 
+const Dropdown = ({label,value,options,onChange})=>{
+    return(
+        <label>
+            {label}
+            <select value={value} onChange={onChange}>
+                {options.map((option) => (
+                    <option value={option.value}>{option.label}</option>
+                ))}
+            </select>
+        </label>
+    )
+}
 
 export default account
