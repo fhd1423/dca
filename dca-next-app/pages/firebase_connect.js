@@ -13,11 +13,10 @@ const firebaseConfig = {
   measurementId: "G-Y6DF75MEG6"
 };
 
-const firebaseapp = initializeApp(firebaseConfig)
+export const firebaseapp = initializeApp(firebaseConfig)
 const db = getFirestore(firebase)
 
 export default db;
-
 /*
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
