@@ -11,22 +11,19 @@ const account = () => {
     ];
 
     const cryptoOptions = [
-        { label: 'Bitcoin', value: 'Bitcoin' },
-        { label: 'Ethereum', value: 'Ethereum' },
-        { label: 'Tether', value: 'Tether' },
-        { label: 'USDCoin', value: 'USDCoin' },
-        { label: 'BNB', value: 'BNB' },
-        { label: 'BUSD', value: 'BUSD' },
-        { label: 'Cardano', value: 'Cardano' },
-        { label: 'Solana', value: 'Solana' },
-        { label: 'Dogecoin', value: 'Dogecoin' }
+        { label: 'Bitcoin', value: 'BTCUSD' },
+        { label: 'Ethereum', value: 'ETHUSD' },
+        { label: 'BNB', value: 'BNBUSD' },
+        { label: 'Cardano', value: 'ADAUSD' },
+        { label: 'Solana', value: 'SOLUSD' },
+        { label: 'Dogecoin', value: 'DOGEUSD' }
     ];
 
     const [frequency, setFrequency] = React.useState('daily');
     const [cryptocurrency, setCryptocurrency] = React.useState('Bitcoin');
-    const [apiKey,setApiKey] = React.useState('');
-    const [apiSecret,setApiSecret] = React.useState('');
-    const [amount,setAmount] = React.useState('');
+    const [apiKey, setApiKey] = React.useState('');
+    const [apiSecret, setApiSecret] = React.useState('');
+    const [amount, setAmount] = React.useState('');
 
 
     const handleFrequencyChange = (event) => {
@@ -51,44 +48,51 @@ const account = () => {
 
     function submit(e) {
         e.preventDefault();
-        alert(apiKey+" "+apiSecret+" "+frequency+" "+amount);
+        alert(apiKey + " " + apiSecret + " " + frequency + " " + amount);
     }
 
 
     return (
         <div className=' relative bg-black h-screen w-screen'>
-            <button onClick={() => signOut()} className='text-gray-400 absolute right-0 mt-10 mr-10 h-18 w-36 p-4 border-white bg-white rounded-lg hover:text-black'>
+            <button onClick={() => signOut()} className='text-xl font-bold text-gray-400 absolute right-0 mt-10 mr-10 h-18 w-36 p-4 border-white bg-white rounded-lg hover:text-black'>
                 Logout
             </button>
-            <div className='w-full absolute top-40 text-center text-2xl f ont-bold text-gray-400'>
-                Connect to Binance
+            <div className='text-red-500 w-full absolute top-40 text-center text-2xl font-bold text-gray-400'>
+                Connect to Binance Exchange
+                <div className='text-black'> empty </div>
                 <div className='w-full font-bold text-gray-400'>
                     API Key:
-                    <input type="text" name="apiKey" onChange={handleApiKeyChange}/>
+                    <input className='ml-2 rounded-lg' type="text" name="apiKey" onChange={handleApiKeyChange} />
+                    <div className='text-black'> empty </div>
                     <div>
                         API Secret:
-                        <input type="text" name="apiSecret" onChange={handleApiSecretChange}/>
+                        <input className='ml-2 rounded-lg' type="text" name="apiSecret" onChange={handleApiSecretChange} />
+                        <div className='text-black'> empty </div>
                     </div>
                     <div>
                         <Dropdown
-                            label="cryptocurrency:"
+                            label="Select cryptocurrency type:"
                             options={cryptoOptions}
                             value={cryptocurrency}
                             onChange={handleCryptocurrencyChange}
                         />
+                        <div className='text-black'> empty </div>
                     </div>
-                        <Dropdown
-                            label="frequency:"
-                            options={options}
-                            value={frequency}
-                            onChange={handleFrequencyChange}
-                        />
+                    <Dropdown
+                        label="Select frequency of purchases:"
+                        options={options}
+                        value={frequency}
+                        onChange={handleFrequencyChange}
+                        className='bg-red'
+                    />
                     <div>
-                        Dollar amount:
-                        <input type="text" name="amount" onChange={handleAmountChange}/>
+                        <div className='text-black'> empty </div>
+                        # of coins to buy:
+                        <input className=' ml-2 rounded-lg' type="text" name="amount" onChange={handleAmountChange} />
 
                         <div>
-                            <button onClick={submit}>
+                            <div className='text-black'> empty </div>
+                            <button className='mt-20 h-18 w-36 p-4 border-white bg-white rounded-lg hover:text-black' onClick={submit}>
                                 Submit
                             </button>
                         </div>
@@ -113,8 +117,8 @@ export const getServerSideProps = async (context) => {
     }
 }
 
-const Dropdown = ({label,value,options,onChange})=>{
-    return(
+const Dropdown = ({ label, value, options, onChange }) => {
+    return (
         <label>
             {label}
             <select value={value} onChange={onChange}>

@@ -9,15 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "firebase-admin": "^11.1.0",
-=======
     "body-parser": "^1.20.1",
     "browserify-fs": "^1.0.0",
     "firebase": "^9.12.1",
     "firebase-admin": "^11.1.0",
     "fs": "^0.0.1-security",
->>>>>>> 2f5fed2eec88db7756bc796bd060f984beb93f80
     "next": "12.3.1",
     "next-auth": "^4.14.0",
     "react": "18.2.0",
