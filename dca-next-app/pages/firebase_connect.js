@@ -1,4 +1,4 @@
-import { firebase } from 'firebase/app';
+import firebase from 'firebase/app';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
 
@@ -13,7 +13,7 @@ const firebaseConfig = {
   measurementId: "G-Y6DF75MEG6"
 };
 
-export const firebaseapp = initializeApp(firebaseConfig)
+export const firebase = initializeApp(firebaseConfig)
 const db = getFirestore(firebase)
 
 export default db;
