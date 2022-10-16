@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@binance/connector": "^2.0.0-rc.3",
     "body-parser": "^1.20.1",
     "browserify-fs": "^1.0.0",
     "firebase": "^9.12.1",
