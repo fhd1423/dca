@@ -5,7 +5,7 @@ import { collection, addDoc } from "firebase/firestore";
 
 
 
-const account = () => {
+const Account = () => {
     const options = [
         { label: 'daily', value: 'daily' },
         { label: 'weekly', value: 'weekly' },
@@ -141,4 +141,4 @@ const Dropdown = ({ label, value, options, onChange }) => {
     )
 }
 
-export default account
+export default Account
