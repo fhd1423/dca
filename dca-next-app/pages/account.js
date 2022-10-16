@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
-import db from './firebase_connect';
+import { db } from './firebase_connect';
 import { collection, addDoc } from "firebase/firestore";
 
 
