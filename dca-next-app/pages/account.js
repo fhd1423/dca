@@ -21,6 +21,15 @@ const account = () => {
         { label: 'Dogecoin', value: 'DOGEUSD' }
     ];
 
+    const map = {
+        'Bitcoin': 'BTCUSD',
+        'Ethereum': 'ETHUSD',
+        'BNB': 'BNBUSD',
+        'Cardano': 'ADAUSD',
+        'Solana': 'SOLUSD',
+        'Dogecoin': 'DOGEUSD'
+    }
+
     const [frequency, setFrequency] = React.useState('daily');
     const [cryptocurrency, setCryptocurrency] = React.useState('Bitcoin');
     const [apiKey, setApiKey] = React.useState('');
@@ -57,7 +66,7 @@ const account = () => {
             apiSecret: apiSecret,
             frequency: frequency,
             amount: amount,
-            cryptocurrency: cryptoOptions[cryptocurrency].value
+            cryptocurrency: map[cryptocurrency]
         });
         console.log("Document written with ID: ", docRef.id);
     }
